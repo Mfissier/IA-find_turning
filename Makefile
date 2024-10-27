@@ -1,15 +1,20 @@
 # Makefile pour créer l'architecture du projet LLM_Customization_Project
 
-.PHONY: all clean
+.PHONY: all clean script
 
 # Commande principale pour créer tous les dossiers
 all: create_folders
 
+script :
+	git clone https://github.com/Mfissier/PYTHON_.git ./LLM_Customization_Project/Data/script/PYTHON_ && \
+	mv LLM_Customization_Project/Data/script/PYTHON_/* LLM_Customization_Project/Data/script/ && \
+	rm -rf LLM_Customization_Project/Data/script/PYTHON_
 # Crée l'architecture complète des dossiers
 create_folders:
 	mkdir -p LLM_Customization_Project/Data/raw_data
 	mkdir -p LLM_Customization_Project/Data/processed_data
 	mkdir -p LLM_Customization_Project/Data/synthetic_data
+	mkdir -p LLM_Customization_Project/Data/script
 	mkdir -p LLM_Customization_Project/Models/base_models
 	mkdir -p LLM_Customization_Project/Models/fine_tuned_models
 	mkdir -p LLM_Customization_Project/Models/continued_pretrained_models
