@@ -31,6 +31,10 @@ create_folders:
 	mkdir -p LLM_Customization_Project/Documentation/evaluation_reports
 	mkdir -p LLM_Customization_Project/Documentation/deployment_guide
 
+install :
+	pip install -r requirements.txt
+
+
 # Supprime l'architecture complète des dossiers
 clean:
 	rm -rf LLM_Customization_Project
