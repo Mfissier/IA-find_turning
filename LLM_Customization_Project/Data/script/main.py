@@ -21,7 +21,6 @@ def main() :
     """
     This main is juste for test
     """
-    
 #
 
 if __name__ == "__main__":
