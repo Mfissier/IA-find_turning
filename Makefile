@@ -1,15 +1,22 @@
 # Makefile pour créer l'architecture du projet LLM_Customization_Project
 
-.PHONY: all clean script
+.PHONY: all clean script install_ollama create_folders install
 
-# Commande principale pour créer tous les dossiers
-all: create_folders
+all: create_folders install_ollama install script 
 
-script :
+script:
 	git clone https://github.com/Mfissier/PYTHON_.git ./LLM_Customization_Project/Data/script/PYTHON_ && \
 	mv LLM_Customization_Project/Data/script/PYTHON_/* LLM_Customization_Project/Data/script/ && \
 	rm -rf LLM_Customization_Project/Data/script/PYTHON_
-# Crée l'architecture complète des dossiers
+
+install_ollama:
+	@echo "Setting up virtual environment and installing Ollama..."
+	python3 -m venv llama_env && \
+	. llama_env/bin/activate && \
+	echo "Virtual environment activated." 
+	# Place Ollama installation commands here if available for Linux
+	llama_env/bin/pip install ollama
+
 create_folders:
 	mkdir -p LLM_Customization_Project/Data/raw_data
 	mkdir -p LLM_Customization_Project/Data/processed_data
@@ -36,11 +43,8 @@ create_folders:
 	mkdir -p LLM_Customization_Project/Documentation/evaluation_reports
 	mkdir -p LLM_Customization_Project/Documentation/deployment_guide
 
-install :
-	pip install -r requirements.txt
+install: install_ollama
+	llama_env/bin/pip install -r requirements.txt
 
-
-# Supprime l'architecture complète des dossiers
 clean:
-	rm -rf LLM_Customization_Project
-
+	rm -rf LLM_Customization_Project llama_env
